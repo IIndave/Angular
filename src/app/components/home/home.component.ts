@@ -1,5 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { take } from 'rxjs';
+import { ApiService } from 'src/app/services/api.service';
 import { IUserResponse } from 'src/model/interfaces/IUser';
 import { IUser } from 'src/model/interfaces/IUsers';
 
@@ -9,28 +11,16 @@ import { IUser } from 'src/model/interfaces/IUsers';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  usuarios!:IUser[];
-  constructor(private http:HttpClient) {
-    this.usuarios = [];
+  usuarios:IUser[] = [];
+  constructor(private api:ApiService) {
    }
 
   ngOnInit(): void {
-    let headers:HttpHeaders = new HttpHeaders()
-    const token = sessionStorage.getItem('Token');
-
-    headers = headers.append('Authorization','Bearer ' + token)
-
-    this.http.get<IUserResponse>('http://51.38.51.187:5050/api/v1/users',
-    {
-      headers:headers,
-    }).subscribe(data => {
+    this.api.getUsers().pipe(take(1)).subscribe(data => {//Mirar lo del take 
       this.usuarios = data.items;
       console.log(this.usuarios)
     })
     }
-    
-    
-  
+  }
+      
 
-  
-}

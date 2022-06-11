@@ -17,10 +17,21 @@ export class ApiService {
     
   }
     loginByEmail(form:ILogin):Observable<IRegister>{
-      let direccion2 = url + "auth/log-in";
+      const direccion2 = url + "auth/log-in";
 
       return this.http.post<IRegister>(direccion2,form)
     }
+
+    getUsers(){
+      const address = url + "users";
+      const token = sessionStorage.getItem('Token');
+      const headers:HttpHeaders = new HttpHeaders().append('Authorization','Bearer ' + token)
+      
+      return this.http.get<IUserResponse>(address,
+      {
+        headers:headers,
+      })
+      }
 
 
     

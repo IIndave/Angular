@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { IUserResponse } from 'src/model/interfaces/IUser';
-import { IUsers } from 'src/model/interfaces/IUsers';
+import { IUser } from 'src/model/interfaces/IUsers';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +9,7 @@ import { IUsers } from 'src/model/interfaces/IUsers';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  usuarios!:IUsers[];
+  usuarios!:IUser[];
   constructor(private http:HttpClient) {
     this.usuarios = [];
    }

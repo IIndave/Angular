@@ -1,5 +1,3 @@
-<ul>
-    <li *ngFor="let usuario of usuarios">{{usuario.name}}, {{usuario.surname}}</li>
-</ul>
 
+<app-user *ngFor="let usuario of usuarios" [user] = "usuario"></app-user>
 <button class="w-100 btn btn-lg btn-primary" type="reset">Checkout</button>

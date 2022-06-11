@@ -1,6 +1,6 @@
-import { IUsers } from "./IUsers";
+import { IUser } from "./IUsers";
 
 export interface IUserResponse {
     count: number;
-    items: IUsers[];
+    items: IUser[];
 }

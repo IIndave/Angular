@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { IRegister } from 'src/model/interfaces/IRegister';
+import { ApiService } from 'src/app/services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +15,7 @@ export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;//las propiedades de todos los campos
   submitted = false;//propiedad submitted para hacer un control de si se ha pulsado o no el botón de enviar, para gestionar esta información.
 
-  constructor(private formBuilder:FormBuilder) { }
+  constructor(private formBuilder:FormBuilder,private api:ApiService,private router: Router) { }
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group(
@@ -28,6 +31,12 @@ export class RegisterComponent implements OnInit {
   get form() {
     return this.registerForm.controls;
   }
+
+  register(form:IRegister){
+    console.log(form)
+    this.api.register(form).subscribe()
+        this.router.navigate(['/login'])
+    }
 
   onSubmit() {
     this.submitted = true;

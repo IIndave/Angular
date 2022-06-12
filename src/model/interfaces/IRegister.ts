@@ -1,5 +1,6 @@
 export interface IRegister {
-    accessToken:string;
-    refreshToken:string;
-    tokenType:string;
+    name:string;
+    surname:string;
+    email:string;
+    password:string;
 };

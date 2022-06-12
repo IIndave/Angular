@@ -1,9 +1,8 @@
-<form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+<form (ngSubmit)="register(registerForm.value)" [formGroup]="registerForm">
     <h1 class="h3 mb-3 fw-normal">Registro</h1>
 
     <div class="form-floating">
-        <label for="floatingInput"></label>
-        <input type="text" class="form-control"  formControlName="name"  id="floatingInput" placeholder="Nombre" [ngClass]="{ 'is-invalid':  form['name'].errors }" />
+        <input type="text" class="form-control"  formControlName="name"  id="name" placeholder="Nombre" [ngClass]="{ 'is-invalid':  form['name'].errors }" />
             <!--
                 <div *ngIf="form['name'].errors" class="invalid-feedback">
                 <span *ngIf="form['name'].errors['required']">El nombre es obligatorio</span>
@@ -12,13 +11,11 @@
     </div>
     
     <div class="form-floating">
-        <label for="floatingInput"></label>
-        <input type="text" class="form-control" formControlName="surname" id="floatingInput" placeholder="Apellidos" >
+        <input type="text" class="form-control" formControlName="surname" id="surname" placeholder="Apellidos" >
     </div>
 
     <div class="form-floating">
-        <label for="floatingInput"></label>
-        <input type="email" class="form-control" formControlName="email" id="floatingInput" placeholder="Email" [ngClass]="{ 'is-invalid': form['email'].errors }" />
+        <input type="email" class="form-control" formControlName="email" id="email" placeholder="Email" [ngClass]="{ 'is-invalid': form['email'].errors }" />
 		<!--
         <div *ngIf="form['email'].errors" class="invalid-feedback">
 			<div *ngIf="form['email'].errors['required']">El email es obligatorio</div>
@@ -28,8 +25,7 @@
     </div>
 
     <div class="form-floating">
-        <label for="floatingPassword"></label>
-        <input type="password" class="form-control" id="floatingPassword" formControlName="password" placeholder="Password" [ngClass]="{ 'is-invalid': form['password'].errors }" >
+        <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password" [ngClass]="{ 'is-invalid': form['password'].errors }" >
         <!--
         <div *ngIf="form['password'].errors" class="invalid-feedback">
 			<div *ngIf="form['password'].errors['required']">Password is required</div>

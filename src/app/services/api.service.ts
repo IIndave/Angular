@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ILogin } from 'src/model/interfaces/ILogin';
 import { ILoginResponse } from 'src/model/interfaces/ILoginResponse';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient,HttpErrorResponse,HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IUserResponse } from 'src/model/interfaces/IUser';
 import { IRegister } from 'src/model/interfaces/IRegister';
@@ -39,6 +39,13 @@ export class ApiService {
       {
         headers:headers,
       })
+      }
+
+       handleError(error: HttpErrorResponse) {
+        if (error.status == 0)
+          return ({ status: 600, body: "Unexpected error. If this problem persists, please contact ..." })
+        else
+          return ({ status: error.status, body: error.error });
       }
 
 

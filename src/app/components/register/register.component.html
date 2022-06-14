@@ -1,38 +1,30 @@
+<main class="form-signin">
 <form (ngSubmit)="register(registerForm.value)" [formGroup]="registerForm">
     <h1 class="h3 mb-3 fw-normal">Registro</h1>
 
-    <div class="form-floating">
-        <input type="text" class="form-control"  formControlName="name"  id="name" placeholder="Nombre" [ngClass]="{ 'is-invalid':  form['name'].errors }" />
-            <!--
-                <div *ngIf="form['name'].errors" class="invalid-feedback">
-                <span *ngIf="form['name'].errors['required']">El nombre es obligatorio</span>
+    <div class="form-floating row g-3" >
+        <div class="col-sm-6">
+            <input type="text" class="form-control"  formControlName="name"  id="floatingInput" placeholder="Nombre" />
+        </div>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" formControlName="surname" id="surname" placeholder="Surname" >
+        </div>
+
+        <div class="col-12">
+            <input type="email" class="form-control" formControlName="email" id="email" placeholder="Email" [ngClass]="{ 'is-invalid': form['email'].errors }" />
+		
+            <div *ngIf="form['email'].errors" class="invalid-feedback">
+                <div *ngIf="form['email'].errors['email']">El email debe ser válido</div>
             </div>
-            -->
+        </div>
+        <div class="col-12">
+            <input type="password" class="form-control" id="password" formControlName="password" placeholder="Contraseña" [ngClass]="{ 'is-invalid': form['password'].errors }" >
+        
+            <div *ngIf="form['password'].errors" class="invalid-feedback">
+                <div *ngIf="form['password'].errors['minlength']">La contraseña debe tener al menos 6 caracteres.</div>
+            </div>
+        </div>
     </div>
-    
-    <div class="form-floating">
-        <input type="text" class="form-control" formControlName="surname" id="surname" placeholder="Apellidos" >
-    </div>
-
-    <div class="form-floating">
-        <input type="email" class="form-control" formControlName="email" id="email" placeholder="Email" [ngClass]="{ 'is-invalid': form['email'].errors }" />
-		<!--
-        <div *ngIf="form['email'].errors" class="invalid-feedback">
-			<div *ngIf="form['email'].errors['required']">El email es obligatorio</div>
-			<div *ngIf="form['email'].errors['email']">El email debe de ser válido</div>
-		</div>
-        -->
-    </div>
-
-    <div class="form-floating">
-        <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password" [ngClass]="{ 'is-invalid': form['password'].errors }" >
-        <!--
-        <div *ngIf="form['password'].errors" class="invalid-feedback">
-			<div *ngIf="form['password'].errors['required']">Password is required</div>
-			<div *ngIf="form['password'].errors['minlength']">Password must be at least 6 characters</div>
-		</div>
-        -->
-    </div>
-
     <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="registerForm.invalid">Registrarse</button>
 </form>
+</main>

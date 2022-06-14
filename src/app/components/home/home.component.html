@@ -1,3 +1,4 @@
-
-<app-user *ngFor="let usuario of usuarios" [user] = "usuario"></app-user>
-<button class="w-100 btn btn-lg btn-primary" type="reset">Checkout</button>
+<h1>Listado de Usuarios</h1>
+<div class="container">
+<app-user class="User" *ngFor="let usuario of usuarios" [user] = "usuario"></app-user>
+</div>

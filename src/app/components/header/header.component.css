@@ -1,0 +1,24 @@
+.btn-checkout{
+    background-color: rgb(235, 77, 119);
+    color:white;
+    padding:10px;
+    border-radius: 8px;
+}
+
+.btn-checkout:hover{
+    background-color: rgb(255, 0, 68);
+    box-shadow: 20px;
+}
+
+.nav-link.active{
+    border: 1px solid white;
+    color: black !important;
+    background-color: white ;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.nav-link.active:hover{
+    background-color: rgba(249, 243, 243, 0.689);
+    color: white !important;
+}

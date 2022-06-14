@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { ApiService } from 'src/app/services/api.service';
 import { ILogin } from 'src/model/interfaces/ILogin';
@@ -14,14 +14,12 @@ import { ILogin } from 'src/model/interfaces/ILogin';
 export class LoginComponent implements OnInit,OnDestroy {
   
   loginForm!: FormGroup;
-  unsus!:Subscription
+  subscription!:Subscription
   
   constructor(private formBuilder:FormBuilder,private api:ApiService,private router: Router) { }
 
   ngOnInit(): void {
     
-
-
     this.loginForm = this.formBuilder.group(
       {
         email:["", [Validators.required, Validators.email]],
@@ -30,25 +28,30 @@ export class LoginComponent implements OnInit,OnDestroy {
     );
   }
   
-
   onLogin(form:ILogin){
-    this.unsus = this.api.loginByEmail(form).subscribe((data) => {
+    this.subscription = this.api.loginByEmail(form).subscribe((data) => {
       sessionStorage.setItem('Token', data.accessToken)
         this.router.navigate(['/'])
-    })}
+    },(error: HttpErrorResponse) => {
+      if (error.error instanceof ErrorEvent) {
+        // A client-side or network error occurred. Handle it accordingly.
+        alert(error.error.message);
+      } else {
+        // The backend returned an unsuccessful response code.
+        // The response body may contain clues as to what went wrong,
+        alert(`Error ${error.status}: ` +
+          ` ${error.error.message}`);
+      }
+    }
+  )}
 
-  getToken() {
-    return sessionStorage.getItem('Token');
-  }
-
-  get isLoggedIn(): boolean {
-    const authToken = this.getToken()
-    return (authToken !== null) ? true : false;
     
-  }
-
+    
+   
   ngOnDestroy(){
-    this.unsus.unsubscribe()
+    if (this.subscription){
+    this.subscription.unsubscribe()
+    }
   }
   
 }

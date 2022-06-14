@@ -1,15 +1,17 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+<nav id="navbar" class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
-      <a routerLink="/" class="navbar-brand" >Home</a>
+      <a id="navbar-brand" routerLink="/" class="navbar-brand" >Home</a>
       <div>
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a routerLink="/login" class="nav-link active" aria-current="page" >Login</a>
+            <a *ngIf="hasRoute('/register')" routerLink="/login" class="nav-link active" aria-current="page" >Login</a>
           </li>
           <li class="nav-item">
-            <a routerLink="/register" class="nav-link active" aria-current="page" >Register</a>
+            <a *ngIf="hasRoute('/login')" routerLink="/register" class="nav-link active" aria-current="page" >Register</a>
           </li>
+          <button *ngIf="!hasRoute('/login') && !hasRoute('/register')" (click)="logout()" class="btn-checkout" type="reset">Checkout</button>
         </ul>
       </div>
     </div>
   </nav>
+  

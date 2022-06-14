@@ -32,7 +32,6 @@ export class RegisterComponent implements OnInit {
   }
 
   register(form:IRegister){
-    console.log(form)
     this.api.register(form).subscribe({
       next: () => {
           this.router.navigate(['/login'])

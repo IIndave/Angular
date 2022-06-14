@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.api.getUsers().pipe(take(1)).subscribe(data => {
       this.usuarios = data.items;
-      console.log(this.usuarios)
     })
     }
 

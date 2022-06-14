@@ -39,17 +39,5 @@ export class ApiService {
       {
         headers:headers,
       })
-      }
-
-       handleError(error: HttpErrorResponse) {
-        if (error.status == 0)
-          return ({ status: 600, body: "Unexpected error. If this problem persists, please contact ..." })
-        else
-          return ({ status: error.status, body: error.error });
-      }
-
-
-    
-
-   
+      }   
 }
